@@ -1,165 +1,628 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_application_1/takeatest2.dart';
 
+// class DashboardPage extends StatelessWidget {
+//   const DashboardPage({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Student Dashboard',
+//       theme: ThemeData(
+//         primarySwatch: Colors.green,
+//       ),
+//       home: const MyHomePage(),
+//       debugShowCheckedModeBanner: false,
+//     );
+//   }
+// }
+
+// class DashboardPage extends StatefulWidget {
+//   const DashboardPage({Key? key}) : super(key: key);
+
+//   @override
+//   _DashboardPageState createState() => _DashboardPageState();
+// }
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  const DashboardPage({Key? key}) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  bool? isCheckbox = false;
-  bool isSwitch = false;
+  // final mathsController =TextEditingController()
+  // Initial Selected Value
+  String dropdownvalue = 'A';
+  String mathsvalue = 'A';
+  String englishvalue = 'A';
+  String kiswahilivalue = 'A';
+  String chemistryvalue = 'A';
+  String biologyvalue = 'A';
+  String compvalue = 'A';
+  String historyvalue = 'A';
+  String businessvalue = 'A';
+  String physicsvalue = 'A';
+  String crevalue = 'A';
+  String geographyvalue = 'A';
+  String meanvalue = 'A';
+  String homevalue = 'A';
 
+  // List of items in our dropdown menu
+  var items = [
+    'A',
+    'A-',
+    'B+',
+    'B',
+    'B-',
+    'C+',
+    'C',
+    'C-',
+    'D+',
+    'D',
+    'D-',
+    'E',
+  ];
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_typing_uninitialized_variables
-    var gender;
     return Scaffold(
-      backgroundColor: Colors.grey[400],
       appBar: AppBar(
-        title: const Text('Dashboard'),
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              debugPrint('Actions');
-            },
-            icon: const Icon(
-              Icons.info_outline,
-            ),
-          ),
-        ],
+        title: const Text("Student Dashboard"),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(children: [
-          Text('${FirebaseAuth.instance.currentUser!.email}'),
-          const Text(
-            "1. Grade obtained in English(KCSE)",
-            style: TextStyle(fontSize: 18),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Mathematics',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: mathsvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        mathsvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'English',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: englishvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        englishvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Kiswahili',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: kiswahilivalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        kiswahilivalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Chemistry',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: chemistryvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        chemistryvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Biology',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: biologyvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        biologyvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Physics',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: physicsvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        physicsvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'History',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: historyvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        historyvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Geography',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: geographyvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        geographyvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'CRE',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: crevalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        crevalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Business',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: businessvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        businessvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Computer Studies',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: compvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        compvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     const Text(
+              //       'Home science',
+              //       style: TextStyle(
+              //         fontSize: 16,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //     const SizedBox(
+              //       width: 50,
+              //     ),
+              //     DropdownButton(
+              //       // Initial Value
+              //       value: homevalue,
+
+              //       // Down Arrow Icon
+              //       icon: const Icon(Icons.keyboard_arrow_down),
+
+              //       // Array list of items
+              //       items: items.map((String items) {
+              //         return DropdownMenuItem(
+              //           value: items,
+              //           child: Text(items),
+              //         );
+              //       }).toList(),
+              //       // After selecting the desired option,it will
+              //       // change button value to selected value
+              //       onChanged: (String? newValue) {
+              //         setState(() {
+              //           homevalue = newValue!;
+              //         });
+              //       },
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     const Text(
+              //       'Overall meangrade',
+              //       style: TextStyle(
+              //         fontSize: 16,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //     const SizedBox(
+              //       width: 50,
+              //     ),
+              //     DropdownButton(
+              //       // Initial Value
+              //       value: meanvalue,
+
+              //       // Down Arrow Icon
+              //       icon: const Icon(Icons.keyboard_arrow_down),
+
+              //       // Array list of items
+              //       items: items.map((String items) {
+              //         return DropdownMenuItem(
+              //           value: items,
+              //           child: Text(items),
+              //         );
+              //       }).toList(),
+              //       // After selecting the desired option,it will
+              //       // change button value to selected value
+              //       onChanged: (String? newValue) {
+              //         setState(() {
+              //           meanvalue = newValue!;
+              //         });
+              //       },
+              //     ),
+              //   ],
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Overall meangrade',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  DropdownButton(
+                    // Initial Value
+                    value: meanvalue,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        meanvalue = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.all(25.0),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          const Divider(),
-          RadioListTile(
-            title: const Text("A"),
-            value: "A",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("B"),
-            value: "B",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("C"),
-            value: "C",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("D"),
-            value: "D",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("E"),
-            value: "D",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          const Text(
-            "2. Feeling down, depressed, or hopeless ?",
-            style: TextStyle(fontSize: 18),
-          ),
-          const Divider(),
-          RadioListTile(
-            title: const Text("Not at all"),
-            value: "Not at all",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("Several days"),
-            value: "Several days",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("More than half of the days"),
-            value: "More than half of the days",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text("Nearly every day"),
-            value: "Nearly every day",
-            groupValue: gender,
-            onChanged: (value) {
-              setState(() {
-                gender = value.toString();
-              });
-            },
-          ),
-          // OutlinedButton(
-          //   style: ElevatedButton.styleFrom(
-          //     backgroundColor: isSwitch ? Colors.black : Colors.white,
-          //   ),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) {
-          //           return const Page2();
-          //         },
-          //       ),
-          //     );
-          //   },
-          //   child: const Text('Next'),
-          // ),
-        ]),
+        ),
       ),
     );
   }
