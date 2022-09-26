@@ -50,17 +50,6 @@ class _LoginPageState extends State<LoginPage> {
             'assets/person.png',
             height: 200,
           ),
-          //Hello again
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 20),
-          //   child: Text(
-          //     'Hello Mercy, Welcome back',
-          //     style: TextStyle(
-          //       fontWeight: FontWeight.bold,
-          //       fontSize: 30,
-          //     ),
-          //   ),
-          // ),
 
           SizedBox(height: 10),
           //email textfield

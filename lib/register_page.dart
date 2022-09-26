@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:course/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -24,17 +25,18 @@ class _RegisterPageState extends State<RegisterPage> {
   final _kcpenoController = TextEditingController();
 
   Future SignUp() async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    return await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
   }
 
-  Future<String> Method2(Map<String, dynamic> data) async {
-    DocumentReference doc = await FirebaseFirestore.instance
+  Future<String> SaveUserCredentials(Map<String, dynamic> data) async {
+    await FirebaseFirestore.instance
         .collection("UserCredentials")
-        .add(data);
-    return doc.id;
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set(data);
+    return FirebaseAuth.instance.currentUser!.uid;
   }
 
   @override
@@ -53,164 +55,49 @@ class _RegisterPageState extends State<RegisterPage> {
             //Hello again
             SizedBox(height: 20),
             //Full Name textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _fullnameController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Full Name',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
+            CustomTextField(
+                fieldname: "Full Name", controller: _fullnameController),
             SizedBox(height: 10),
             //Kcse Index No textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _kcsenoController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Kcse Index No',
-                    ),
-                  ),
-                ),
-              ),
+            CustomTextField(
+              fieldname: "KCSE Index Number",
+              controller: _kcsenoController,
+              maxLength: 11,
+              inputType: TextInputType.number,
             ),
-
             SizedBox(height: 10),
             //email textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _yearController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Kcse Year',
-                    ),
-                  ),
-                ),
-              ),
+            CustomTextField(
+              fieldname: "KCSE year",
+              controller: _yearController,
+              maxLength: 4,
+              inputType: TextInputType.number,
             ),
-
             SizedBox(height: 10),
             //email textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _kcpenoController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Kcpe index no',
-                    ),
-                  ),
-                ),
-              ),
+            CustomTextField(
+              fieldname: "KCPE Index Number",
+              controller: _kcpenoController,
+              maxLength: 11,
+              inputType: TextInputType.number,
             ),
-
             SizedBox(height: 10),
             //email textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Email',
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomTextField(fieldname: "Email", controller: _emailController),
             SizedBox(height: 10.0),
             //password textfield
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Password',
-                    ),
-                  ),
-                ),
-              ),
+            CustomTextField(
+              fieldname: "Password",
+              controller: _passwordController,
+              isPassword: true,
             ),
             SizedBox(height: 10.0),
-            //signin button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: TextField(
-                    controller: _confirmpasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Confirm Password',
-                    ),
-                  ),
-                ),
-              ),
+            //confirm password
+            CustomTextField(
+              fieldname: "Confirm Password",
+              controller: _confirmpasswordController,
+              isPassword: true,
             ),
             SizedBox(height: 10.0),
             Padding(
@@ -218,19 +105,24 @@ class _RegisterPageState extends State<RegisterPage> {
               child: GestureDetector(
                 onTap: () async {
                   try {
-                    await Method2(({
-                      "fullname": _fullnameController.text,
-                      "email": _emailController.text,
-                      "password": _passwordController.text,
-                      "confirmpassword": _confirmpasswordController,
-                      "kcse": _kcsenoController.text,
-                      "year": _yearController.text,
-                      "kcpe": _kcpenoController.text,
-                    })).then((value) => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => LoginPage())));
+                    var result = await SignUp();
+                    if (result != null) {
+                      await SaveUserCredentials(({
+                        "id": FirebaseAuth.instance.currentUser!.uid,
+                        "fullname": _fullnameController.text,
+                        "email": _emailController.text,
+                        // "password": _passwordController.text,
+                        //  "confirmpassword": _confirmpasswordController.text,
+                        "kcse": _kcsenoController.text,
+                        "year": _yearController.text,
+                        "kcpe": _kcpenoController.text,
+                      })).then((value) => Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => LoginPage())));
+                    }
+
                     //await SignUp();
                   } catch (e) {
-                    print("Error");
+                    print(e);
                   }
                 },
                 child: Container(
@@ -264,13 +156,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  ' Login',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => LoginPage()));
+                  },
+                  child: Text(
+                    ' Login',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ]),
@@ -278,4 +176,95 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+}
+
+class CustomTextField extends StatefulWidget {
+  CustomTextField(
+      {Key? key,
+      required this.fieldname,
+      required this.controller,
+      this.inputType = TextInputType.text,
+      this.isPassword = false,
+      this.maxLength = 100
+      //  this.validator = validateName,
+      })
+      : super(key: key);
+  final String fieldname;
+  final TextEditingController controller;
+  final TextInputType inputType;
+  final bool isPassword;
+  final int? maxLength;
+  //final String Function(String?)? validator;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          border: Border.all(color: Colors.white),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: widget.maxLength != null
+              ? TextFormField(
+                  //   validator: widget.validator,
+                  keyboardType: widget.inputType,
+                  inputFormatters: widget.inputType != TextInputType.text
+                      ? <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ]
+                      : null,
+                  maxLength: widget.maxLength,
+                  controller: widget.controller,
+                  obscureText: widget.isPassword,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: widget.fieldname,
+                      counterText: ""),
+                )
+              : TextFormField(
+                  keyboardType: widget.inputType,
+                  // maxLength: widget.maxLength,
+                  controller: widget.controller,
+                  obscureText: widget.isPassword,
+                  inputFormatters: widget.inputType != TextInputType.text
+                      ? <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ]
+                      : null,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: widget.fieldname,
+                  ),
+                ),
+        ),
+      ),
+    );
+  }
+}
+
+String? validateName(String? value) {
+  return value == null ? "Field cannot be empty" : null;
+}
+
+String? validateIndexNumber(int? value) {
+  validateName(value.toString());
+  return value.toString().length < 11 ? "Field must be 11 digits" : null;
+}
+
+String? validateYear(int? value) {
+  validateName(value.toString());
+  return (int.parse(value.toString()) > 2022 &&
+          (int.parse(value.toString()) < 2000))
+      ? "Field must be between 2000 and 2002"
+      : null;
 }
