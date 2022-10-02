@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:course/dashboard.dart';
-//import 'package:course/home_page.dart';
 import 'package:course/register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +14,19 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+//creating a class for login page
 class _LoginPageState extends State<LoginPage> {
-  // text controllers
+  //  addding text controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
+//connecting to the firebase email and password
   Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
     @override
+    // dispose method to release the memory allocated to email and password when they are  removed.
     void dispose() {
       _emailController.dispose();
       _passwordController.dispose();
@@ -34,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  //creating the project title
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

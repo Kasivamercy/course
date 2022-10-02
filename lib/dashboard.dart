@@ -59,6 +59,7 @@ class _DashboardPageState extends State<DashboardPage> {
     'D',
     'D-',
     'E',
+    'None',
   ];
 
   onGrade(BuildContext context, {required String grade}) {
@@ -234,6 +235,7 @@ class _DashboardPageState extends State<DashboardPage> {
     ;
   }
 
+  // ignore: sdk_version_async_exported_from_core
   Future addSubjects() async {
     try {
       // show circular progress indicator
@@ -270,6 +272,7 @@ class _DashboardPageState extends State<DashboardPage> {
     }
   }
 
+  // ignore: sdk_version_async_exported_from_core
   Future addSubjectsDetails(
     String math,
     String eng,
@@ -373,7 +376,6 @@ class _DashboardPageState extends State<DashboardPage> {
                         setState(() {
                           mathsvalue = newValue!;
                           onGrade(context, grade: newValue);
-                          validator:
                           (value) {
                             if (value == null || value.isEmpty) {
                               return 'This field is required';
@@ -768,80 +770,6 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                   ],
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     const Text(
-                //       'Home science',
-                //       style: TextStyle(
-                //         fontSize: 16,
-                //         fontWeight: FontWeight.bold,
-                //       ),
-                //     ),
-                //     const SizedBox(
-                //       width: 50,
-                //     ),
-                //     DropdownButton(
-                //       // Initial Value
-                //       value: homevalue,
-
-                //       // Down Arrow Icon
-                //       icon: const Icon(Icons.keyboard_arrow_down),
-
-                //       // Array list of items
-                //       items: items.map((String items) {
-                //         return DropdownMenuItem(
-                //           value: items,
-                //           child: Text(items),
-                //         );
-                //       }).toList(),
-                //       // After selecting the desired option,it will
-                //       // change button value to selected value
-                //       onChanged: (String? newValue) {
-                //         setState(() {
-                //           homevalue = newValue!;
-                //         });
-                //       },
-                //     ),
-                //   ],
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     const Text(
-                //       'Overall meangrade',
-                //       style: TextStyle(
-                //         fontSize: 16,
-                //         fontWeight: FontWeight.bold,
-                //       ),
-                //     ),
-                //     const SizedBox(
-                //       width: 50,
-                //     ),
-                //     DropdownButton(
-                //       // Initial Value
-                //       value: meanvalue,
-
-                //       // Down Arrow Icon
-                //       icon: const Icon(Icons.keyboard_arrow_down),
-
-                //       // Array list of items
-                //       items: items.map((String items) {
-                //         return DropdownMenuItem(
-                //           value: items,
-                //           child: Text(items),
-                //         );
-                //       }).toList(),
-                //       // After selecting the desired option,it will
-                //       // change button value to selected value
-                //       onChanged: (String? newValue) {
-                //         setState(() {
-                //           meanvalue = newValue!;
-                //         });
-                //       },
-                //     ),
-                //   ],
-                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -885,7 +813,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       addSubjects();
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return Courses();
+                        return const Courses();
                       }));
                     }
                   },

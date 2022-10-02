@@ -1,4 +1,7 @@
+import 'package:course/Widgets/containersuggestedCourses.dart';
 import 'package:flutter/material.dart';
+
+import 'Widgets/containerAreaofInterest.dart';
 
 class Courses extends StatefulWidget {
   const Courses({Key? key}) : super(key: key);
@@ -8,91 +11,67 @@ class Courses extends StatefulWidget {
 }
 
 class _CoursesState extends State<Courses> {
-  String dropdownvalue = 'Medicine';
-  String interestvalue = 'Medicine';
+  String dropdownvalue = 'Reading';
+  String interestvalue = 'Reading';
 
   var items = [
-    'Medicine',
-    'Engineering',
-    'IT related',
-    'Business',
-    ' Education',
+    'Reading',
+    'Sports',
+    'Travelling',
+    'Art',
+    ' Music',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text('Courses Suggestions'),
+        title: Text('Choose area of interest'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
           //SizedBox(height: 10.0),
-          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Area of interest',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  DropdownButton(
-                    // Initial Value
-                    value: interestvalue,
-
-                    // Down Arrow Icon
-                    icon: const Icon(Icons.keyboard_arrow_down),
-
-                    // Array list of items
-                    items: items.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    // After selecting the desired option,it will
-                    // change button value to selected value
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        interestvalue = newValue!;
-                        validator:
-                        (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'This field is required';
-                          }
-                          return null;
-                        };
-                      });
-                    },
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: containerSuggestedCourses(context, "Travelling",
+                    "assets/travelling.PNG", Colors.blue, "traveling_courses"),
               ),
-              SizedBox(height: 25.0),
-              Container(
-                padding: EdgeInsets.all(25.0),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Text(
-                    'Apply',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: containerSuggestedCourses(
+                    context,
+                    "Reading",
+                    "assets/travelling.PNG",
+                    Color.fromARGB(255, 235, 189, 119),
+                    'reading_courses'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: containerSuggestedCourses(
+                    context,
+                    "Writing",
+                    "assets/travelling.PNG",
+                    Color.fromARGB(255, 105, 212, 160),
+                    'writing_courses'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: containerSuggestedCourses(
+                    context,
+                    "Sports",
+                    "assets/travelling.PNG",
+                    Color.fromARGB(255, 228, 228, 110),
+                    'sports_courses'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: containerSuggestedCourses(context, "Music",
+                    "assets/travelling.PNG", Colors.brown, 'music_courses'),
               ),
             ],
           ),
