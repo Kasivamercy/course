@@ -32,30 +32,23 @@ class _ReadingState extends State<writingCourses> {
         child: Padding(
           //SizedBox(height: 10.0),
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Mass Media",
-                    "assets/travelling.PNG", Colors.blue, () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Education arts",
-                    "assets/travelling.PNG", Colors.blue, () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Computer science",
-                    "assets/travelling.PNG", Colors.blue, () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Research",
-                    "assets/travelling.PNG", Colors.blue, () {}),
-              ),
-            ],
-          ),
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: containerTravelling(
+                  "Mass Media", "assets/travelling.PNG", Colors.blue, () {}),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: containerTravelling("Education arts",
+                  "assets/travelling.PNG", Colors.orangeAccent, () {}),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: containerTravelling("Computer science",
+                  "assets/travelling.PNG", Colors.blue, () {}),
+            ),
+          ]),
         ),
       ),
     );

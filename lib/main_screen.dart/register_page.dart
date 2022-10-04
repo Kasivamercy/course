@@ -2,7 +2,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:course/login_page.dart';
+import 'package:course/main_screen.dart/dashboard.dart';
+import 'package:course/main_screen.dart/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _yearController = TextEditingController();
   final _kcpenoController = TextEditingController();
 
-  Future SignUp() async {
+  Future<UserCredential> SignUp() async {
     return await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
@@ -106,9 +107,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 onTap: () async {
                   try {
                     var result = await SignUp();
-                    if (result != null) {
+
+                    if (result.user != null) {
                       await SaveUserCredentials(({
-                        "id": FirebaseAuth.instance.currentUser!.uid,
+                        "id": result.user!.uid,
                         "fullname": _fullnameController.text,
                         "email": _emailController.text,
                         // "password": _passwordController.text,
@@ -117,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         "year": _yearController.text,
                         "kcpe": _kcpenoController.text,
                       })).then((value) => Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => LoginPage())));
+                          MaterialPageRoute(builder: (_) => DashboardPage())));
                     }
 
                     //await SignUp();

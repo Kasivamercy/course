@@ -36,17 +36,17 @@ class _ReadingState extends State<sportsCourses> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Education arts",
+                child: containerTravelling("Education arts",
                     "assets/travelling.PNG", Colors.blue, () {}),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Sports science",
-                    "assets/travelling.PNG", Colors.blue, () {}),
+                child: containerTravelling("Sports science",
+                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Sports management",
+                child: containerTravelling("Sports management",
                     "assets/travelling.PNG", Colors.blue, () {}),
               ),
             ],

@@ -1,7 +1,7 @@
 import 'package:course/Widgets/containersuggestedCourses.dart';
 import 'package:flutter/material.dart';
 
-import 'Widgets/containerAreaofInterest.dart';
+import 'containerAreaofInterest.dart';
 
 class Courses extends StatefulWidget {
   const Courses({Key? key}) : super(key: key);
@@ -47,17 +47,13 @@ class _CoursesState extends State<Courses> {
                     context,
                     "Reading",
                     "assets/travelling.PNG",
-                    Color.fromARGB(255, 235, 189, 119),
+                    Colors.orangeAccent,
                     'reading_courses'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: containerSuggestedCourses(
-                    context,
-                    "Writing",
-                    "assets/travelling.PNG",
-                    Color.fromARGB(255, 105, 212, 160),
-                    'writing_courses'),
+                child: containerSuggestedCourses(context, "Writing",
+                    "assets/travelling.PNG", Colors.blue, 'writing_courses'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -65,13 +61,13 @@ class _CoursesState extends State<Courses> {
                     context,
                     "Sports",
                     "assets/travelling.PNG",
-                    Color.fromARGB(255, 228, 228, 110),
+                    Colors.orangeAccent,
                     'sports_courses'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: containerSuggestedCourses(context, "Music",
-                    "assets/travelling.PNG", Colors.brown, 'music_courses'),
+                    "assets/travelling.PNG", Colors.blue, 'music_courses'),
               ),
             ],
           ),

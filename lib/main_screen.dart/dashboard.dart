@@ -2,7 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:course/GradeHandler.dart';
-import 'package:course/courses.dart';
+import 'package:course/areaofinterest.dart/courses.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -808,9 +808,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     if (_formkey.currentState!.validate()) {
-                      addSubjects();
+                      await addSubjects();
+                      //Navigator.pushNamed(context, routeName)
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return const Courses();

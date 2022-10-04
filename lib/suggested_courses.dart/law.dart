@@ -1,20 +1,19 @@
+import 'package:course/Widgets/containersuggesteduniversities.dart';
 import 'package:flutter/material.dart';
 
-import 'Widgets/containerTravelling.dart';
-
-class musicCourses extends StatefulWidget {
-  const musicCourses({Key? key}) : super(key: key);
+class law extends StatefulWidget {
+  const law({Key? key}) : super(key: key);
 
   @override
-  State<musicCourses> createState() => _ReadingState();
+  State<law> createState() => _lawState();
 }
 
-class _ReadingState extends State<musicCourses> {
-  String dropdownvalue = 'musicCourses';
-  String interestvalue = 'musicCourses';
+class _lawState extends State<law> {
+  String dropdownvalue = 'Reading';
+  String interestvalue = 'Reading';
 
   var items = [
-    'musicCourses',
+    'Reading',
     'Sports',
     'Travelling',
     'Art',
@@ -25,7 +24,7 @@ class _ReadingState extends State<musicCourses> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Courses based on music interest'),
+        title: Text('Best university in Law'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -36,18 +35,21 @@ class _ReadingState extends State<musicCourses> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Music Education",
-                    "assets/travelling.PNG", Colors.blue, () {}),
+                child: containerSuggesteduniversities(
+                  (context),
+                  "Jomo Kenyatta University of Agriculture and Technology",
+                  Colors.blue,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of IT",
-                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
+                child: containerSuggesteduniversities(
+                    (context), "Kenyatta University", Colors.orangeAccent),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Computer Science",
-                    "assets/travelling.PNG", Colors.blue, () {}),
+                child: containerSuggesteduniversities(
+                    (context), "Strathmore University", Colors.blue),
               ),
             ],
           ),

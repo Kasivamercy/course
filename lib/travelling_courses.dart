@@ -1,3 +1,4 @@
+import 'package:course/FirebaseMethods/FirebaseMethods.dart';
 import 'package:course/Widgets/containerTravelling.dart';
 import 'package:flutter/material.dart';
 
@@ -41,12 +42,25 @@ class _travellingCoursesState extends State<travellingCourses> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: containerTravelling("Aerospace Engineering",
-                    "assets/travelling.PNG", Colors.blue, () {}),
+                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: containerTravelling(
-                    "Mass Media", "assets/travelling.PNG", Colors.blue, () {}),
+                    "Mass Media", "assets/travelling.PNG", Colors.blue,
+                    () async {
+                  bool value = await FirebaseMethods()
+                      .CheckuserValidforthecourse("MassMedia");
+                  if (value) {
+                    print("successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Qualify"));
+                  } else {
+                    print("Not successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Don't Qualify"));
+                  }
+                }),
               ),
             ],
           ),
@@ -54,4 +68,10 @@ class _travellingCoursesState extends State<travellingCourses> {
       ),
     );
   }
+}
+
+SnackBar showsnackBar(String text) {
+  return SnackBar(
+    content: Text(text),
+  );
 }

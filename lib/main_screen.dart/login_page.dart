@@ -2,8 +2,9 @@
 
 import 'dart:async';
 
-import 'package:course/dashboard.dart';
-import 'package:course/register_page.dart';
+import 'package:course/areaofinterest.dart/courses.dart';
+import 'package:course/main_screen.dart/dashboard.dart';
+import 'package:course/main_screen.dart/register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -106,8 +107,8 @@ class _LoginPageState extends State<LoginPage> {
             child: GestureDetector(
               onTap: () async {
                 try {
-                  await signIn().then((value) => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => DashboardPage())));
+                  await signIn().then((value) => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => Courses())));
                 } catch (e) {
                   print("Error");
                 }

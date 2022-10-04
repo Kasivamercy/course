@@ -1,3 +1,4 @@
+import 'package:course/suggested_courses.dart/information_science.dart';
 import 'package:flutter/material.dart';
 
 import 'Widgets/containerTravelling.dart';
@@ -25,7 +26,7 @@ class _ReadingState extends State<readingCourses> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Courses based on readingCourses interest'),
+        title: Text('Courses based on reading interest'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -36,23 +37,30 @@ class _ReadingState extends State<readingCourses> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Information science",
-                    "assets/travelling.PNG", Colors.blue, () {}),
+                child: containerTravelling(
+                    "Information science", "assets/travelling.PNG", Colors.blue,
+                    (context) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) {
+                    return const information();
+                  })));
+                  // return const information();
+                }),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: containerTravelling("Bachelor of Law",
+                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: containerTravelling("Education arts",
                     "assets/travelling.PNG", Colors.blue, () {}),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Education arts",
-                    "assets/travelling.PNG", Colors.blue, () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Political science",
-                    "assets/travelling.PNG", Colors.blue, () {}),
+                child: containerTravelling("Political science",
+                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
               ),
             ],
           ),
