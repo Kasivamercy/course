@@ -1,5 +1,10 @@
+import 'package:course/suggested_courses.dart/compscience.dart';
+import 'package:course/suggested_courses.dart/education_arts.dart';
+import 'package:course/suggested_courses.dart/mass_media.dart';
+import 'package:course/travelling_courses.dart';
 import 'package:flutter/material.dart';
 
+import 'FirebaseMethods/FirebaseMethods.dart';
 import 'Widgets/containerTravelling.dart';
 
 class writingCourses extends StatefulWidget {
@@ -24,6 +29,7 @@ class _ReadingState extends State<writingCourses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text('Courses based on writing interest'),
         centerTitle: true,
@@ -35,18 +41,60 @@ class _ReadingState extends State<writingCourses> {
           child: Column(children: [
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: containerTravelling(
-                  "Mass Media", "assets/travelling.PNG", Colors.blue, () {}),
+              child: containerTravelling("Mass Media", "assets/mass-media.png",
+                  Color.fromARGB(255, 124, 168, 212), () async {
+                bool value = await FirebaseMethods()
+                    .CheckuserValidforthecourse("MassMedia");
+                if (value == true) {
+                  print("successful");
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(showsnackBar("You Qualify"));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => massMedia()));
+                } else {
+                  print("Not successful");
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(showsnackBar("You Don't Qualify"));
+                }
+              }),
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: containerTravelling("Education arts",
-                  "assets/travelling.PNG", Colors.orangeAccent, () {}),
+              child: containerTravelling("Education arts", "assets/edu.png",
+                  Color.fromARGB(255, 161, 120, 66), () async {
+                bool value = await FirebaseMethods()
+                    .CheckuserValidforthecourse("Education Arts");
+                if (value == true) {
+                  print("successful");
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(showsnackBar("You Qualify"));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => educationArts()));
+                } else {
+                  print("Not successful");
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(showsnackBar("You Don't Qualify"));
+                }
+              }),
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: containerTravelling("Computer science",
-                  "assets/travelling.PNG", Colors.blue, () {}),
+              child: containerTravelling("Computer science", "assets/comp.png",
+                  Color.fromARGB(255, 124, 168, 212), () async {
+                bool value = await FirebaseMethods()
+                    .CheckuserValidforthecourse("Computer Science");
+                if (value == true) {
+                  print("successful");
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(showsnackBar("You Qualify"));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => compScience()));
+                } else {
+                  print("Not successful");
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(showsnackBar("You Don't Qualify"));
+                }
+              }),
             ),
           ]),
         ),

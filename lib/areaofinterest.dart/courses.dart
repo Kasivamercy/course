@@ -1,6 +1,7 @@
 import 'package:course/Widgets/containersuggestedCourses.dart';
 import 'package:flutter/material.dart';
 
+import '../main_screen.dart/login_page.dart';
 import 'containerAreaofInterest.dart';
 
 class Courses extends StatefulWidget {
@@ -27,8 +28,62 @@ class _CoursesState extends State<Courses> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text('Choose area of interest'),
+        title: const Text('Choose area of interest'),
         centerTitle: true,
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey,
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+              ),
+              child: Icon(
+                Icons.person,
+              ),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.home,
+              ),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.book,
+              ),
+              title: const Text('Courses'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.settings,
+              ),
+              title: const Text('Settings'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.logout,
+              ),
+              title: const Text('Logout'),
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -39,35 +94,27 @@ class _CoursesState extends State<Courses> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: containerSuggestedCourses(context, "Travelling",
-                    "assets/travelling.PNG", Colors.blue, "traveling_courses"),
+                    "assets/travel.png", Colors.white, "traveling_courses"),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: containerSuggestedCourses(
-                    context,
-                    "Reading",
-                    "assets/travelling.PNG",
-                    Colors.orangeAccent,
-                    'reading_courses'),
+                child: containerSuggestedCourses(context, "Reading",
+                    "assets/reading.jpg", Colors.white, 'reading_courses'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: containerSuggestedCourses(context, "Writing",
-                    "assets/travelling.PNG", Colors.blue, 'writing_courses'),
+                    "assets/writing.png", Colors.white, 'writing_courses'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: containerSuggestedCourses(
-                    context,
-                    "Sports",
-                    "assets/travelling.PNG",
-                    Colors.orangeAccent,
-                    'sports_courses'),
+                child: containerSuggestedCourses(context, "Sports",
+                    "assets/sports.png", Colors.white, 'sports_courses'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: containerSuggestedCourses(context, "Music",
-                    "assets/travelling.PNG", Colors.blue, 'music_courses'),
+                    "assets/music.png", Colors.white, 'music_courses'),
               ),
             ],
           ),

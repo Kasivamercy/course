@@ -41,6 +41,11 @@ class _informationState extends State<information> {
                   Colors.blue,
                 ),
               ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.of(context)
+              //         .push(MaterialPageRoute(builder: (_) => RegisterPage()));
+              //   },
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: containerSuggesteduniversities((context),

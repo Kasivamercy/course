@@ -40,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text("Student Login"),
         centerTitle: true,
       ),
@@ -108,7 +109,8 @@ class _LoginPageState extends State<LoginPage> {
               onTap: () async {
                 try {
                   await signIn().then((value) => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => Courses())));
+                      .pushReplacement(
+                          MaterialPageRoute(builder: (_) => Courses())));
                 } catch (e) {
                   print("Error");
                 }

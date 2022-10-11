@@ -1,6 +1,10 @@
+import 'package:course/suggested_courses.dart/education_arts.dart';
 import 'package:course/suggested_courses.dart/information_science.dart';
+import 'package:course/suggested_courses.dart/law.dart';
+import 'package:course/travelling_courses.dart';
 import 'package:flutter/material.dart';
 
+import 'FirebaseMethods/FirebaseMethods.dart';
 import 'Widgets/containerTravelling.dart';
 
 class readingCourses extends StatefulWidget {
@@ -25,6 +29,7 @@ class _ReadingState extends State<readingCourses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text('Courses based on reading interest'),
         centerTitle: true,
@@ -38,29 +43,61 @@ class _ReadingState extends State<readingCourses> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: containerTravelling(
-                    "Information science", "assets/travelling.PNG", Colors.blue,
-                    (context) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) {
-                    return const information();
-                  })));
-                  // return const information();
+                    "Information science",
+                    "assets/information.png",
+                    Color.fromARGB(255, 124, 168, 212), () async {
+                  bool value = await FirebaseMethods()
+                      .CheckuserValidforthecourse("Information Science");
+                  if (value == true) {
+                    print("successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Qualify"));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => information()));
+                  } else {
+                    print("Not successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Don't Qualify"));
+                  }
                 }),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Bachelor of Law",
-                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
+                child: containerTravelling("Bachelor of Law", "assets/law.png",
+                    Color.fromARGB(255, 161, 120, 66), () async {
+                  bool value =
+                      await FirebaseMethods().CheckuserValidforthecourse("Law");
+                  if (value == true) {
+                    print("successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Qualify"));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => law()));
+                  } else {
+                    print("Not successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Don't Qualify"));
+                  }
+                }),
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Education arts",
-                    "assets/travelling.PNG", Colors.blue, () {}),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: containerTravelling("Political science",
-                    "assets/travelling.PNG", Colors.orangeAccent, () {}),
+                child: containerTravelling("Education arts", "assets/edu.png",
+                    Color.fromARGB(255, 124, 168, 212), () async {
+                  bool value = await FirebaseMethods()
+                      .CheckuserValidforthecourse("Education Arts");
+                  if (value == true) {
+                    print("successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Qualify"));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => educationArts()));
+                  } else {
+                    print("Not successful");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showsnackBar("You Don't Qualify"));
+                  }
+                }),
               ),
             ],
           ),

@@ -3,24 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseMethods {
   Future<bool> CheckuserValidforthecourse(String coll) async {
-    String id = await FirebaseAuth.instance.currentUser!.uid;
+    String id = FirebaseAuth.instance.currentUser!.uid;
 
-    var data = await FirebaseFirestore.instance
-        .collection("Courses")
-        .doc(coll)
-        .snapshots();
-    Subjects coursesresult = await data.map(
-            (event) => Subjects.fromJson(event.data() as Map<String, dynamic>))
-        as Subjects;
+    var data =
+        await FirebaseFirestore.instance.collection("Courses").doc(coll).get();
+    Subjects coursesresult =
+        Subjects.fromJson(data.data() as Map<String, dynamic>);
 
-    var data2 = await FirebaseFirestore.instance
-        .collection("Students")
-        .doc(id)
-        .snapshots();
+    var studentsdata =
+        await FirebaseFirestore.instance.collection("Students").doc(id).get();
 
-    Subjects usersresult = await data.map(
-            (event) => Subjects.fromJson(event.data() as Map<String, dynamic>))
-        as Subjects;
+    Subjects usersresult =
+        Subjects.fromJson(studentsdata.data() as Map<String, dynamic>);
 
     if (coursesresult.Biology > usersresult.Biology) {
       return false;
@@ -49,31 +43,20 @@ class FirebaseMethods {
 }
 
 class Subjects {
-  late double Biology;
-  late double Business;
-  late double Chemistry;
-  late double ComputerStudies;
-  late double Cre;
-  late double English;
-  late double Geography;
-  late double History;
-  late double Kiswahili;
-  late double Mathematics;
-  late double MeanGrade;
-  late double Physics;
-  Subjects(
-      double Bio,
-      double Busin,
-      double Chem,
-      double Comp,
-      double cre,
-      double Eng,
-      double Geog,
-      double His,
-      double Kiswa,
-      double Math,
-      double Mean,
-      double Phy) {
+  late int Biology;
+  late int Business;
+  late int Chemistry;
+  late int ComputerStudies;
+  late int Cre;
+  late int English;
+  late int Geography;
+  late int History;
+  late int Kiswahili;
+  late int Mathematics;
+  late int MeanGrade;
+  late int Physics;
+  Subjects(int Bio, int Busin, int Chem, int Comp, int cre, int Eng, int Geog,
+      int His, int Kiswa, int Math, int Mean, int Phy) {
     Biology = Bio;
     Business = Busin;
     Chemistry = Chem;
@@ -100,7 +83,7 @@ class Subjects {
         json["History"] ?? 0,
         json["Kiswahili"] ?? 0,
         json["Mathematics"] ?? 0,
-        json["MeanGrade"] ?? 0,
+        json["Mean Grade"] ?? 0,
         json["Physics"] ?? 0);
   }
 }

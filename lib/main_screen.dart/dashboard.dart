@@ -43,7 +43,7 @@ class _DashboardPageState extends State<DashboardPage> {
   int phy = 12;
   int comp = 12;
 
-  var grade = [12, 11, 10];
+  //var grade = [12, 11, 10];
 
   // List of items in our dropdown menu
   var items = [
@@ -235,7 +235,7 @@ class _DashboardPageState extends State<DashboardPage> {
     ;
   }
 
-  // ignore: sdk_version_async_exported_from_core
+  // // ignore: sdk_version_async_exported_from_core
   Future addSubjects() async {
     try {
       // show circular progress indicator
@@ -299,19 +299,20 @@ class _DashboardPageState extends State<DashboardPage> {
         'Cre': GradeHandler().getPoints(cre),
         'History': GradeHandler().getPoints(hist),
         'Mean Grade': GradeHandler().getPoints(mean),
-        'Business': GradeHandler().getPoints(phy),
-        'Geography': GradeHandler().getPoints(math),
-        'Chemistry': GradeHandler().getPoints(eng),
-        'Biology': GradeHandler().getPoints(kis),
-        'Computer Studies': GradeHandler().getPoints(phy),
+        'Business': GradeHandler().getPoints(busi),
+        'Geography': GradeHandler().getPoints(geo),
+        'Chemistry': GradeHandler().getPoints(chem),
+        'Biology': GradeHandler().getPoints(bio),
+        'Computer Studies': GradeHandler().getPoints(comp),
       });
-      await showDialog(
-          context: context,
-          builder: (context) {
-            return const AlertDialog(
-              content: Text('Your grades have been added successfully'),
-            );
-          });
+      // Navigator.of(context).pop();
+      // await showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return const AlertDialog(
+      //         content: Text('Your grades have been added successfully'),
+      //       );
+      //     });
 
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: ((context) {

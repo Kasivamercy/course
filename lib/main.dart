@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/writing_courses': (context) => const writingCourses(),
         '/sports_courses': (context) => sportsCourses(),
         '/music_courses': (context) => musicCourses(),
-        '/information_science': (context) => information()
+  
       },
     ); //materialApp
   }
