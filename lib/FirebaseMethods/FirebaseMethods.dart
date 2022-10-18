@@ -1,7 +1,67 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseMethods {
+  Future<bool> sendEmail({required String message}) async {
+    String name = "Mercy ";
+    String subject = "Application";
+    String toemail = FirebaseAuth.instance.currentUser!.email.toString();
+    String email = "mercykask@gmail.com";
+    const serviceId = 'service_hhswegj';
+    const templateId = 'template_oty3qo7';
+    const userId = 'S_Maht4qoLqNLB9U5';
+    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+    final response = await http.post(
+      url,
+      headers: {
+        'origin': 'http://localhost',
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'service_id': serviceId,
+        'template_id': templateId,
+        'user_id': userId,
+        'template_params': {
+          'user_name': name,
+          'user_email': email,
+          'user_subject': subject,
+          'user_message': message,
+          "to_email": toemail
+        }
+      }),
+    );
+    return response.statusCode == 200;
+    // print(response.body);
+  }
+
+  Future UpdateDatabase(String course, Color color) async {
+    var value = await FirebaseFirestore.instance
+        .collection("AppliedCourses")
+        .doc(course)
+        .get();
+    if (!value.exists) {
+      await FirebaseFirestore.instance
+          .collection("AppliedCourses")
+          .doc(course)
+          .set(({'total': 0, 'color': color.value, 'course': course}));
+      value = await FirebaseFirestore.instance
+          .collection("AppliedCourses")
+          .doc(course)
+          .get();
+    }
+    num totalcount = value.data()!['total'] ?? 0;
+    //double total = double.parse(totalcount.tostring());
+    totalcount += 1;
+
+    await FirebaseFirestore.instance
+        .collection("AppliedCourses")
+        .doc(course)
+        .update(({'total': totalcount}));
+  }
+
   Future<bool> CheckuserValidforthecourse(String coll) async {
     String id = FirebaseAuth.instance.currentUser!.uid;
 

@@ -1,4 +1,5 @@
 import 'package:course/Widgets/containersuggestedCourses.dart';
+import 'package:course/reports_page.dart';
 import 'package:flutter/material.dart';
 
 import '../main_screen.dart/login_page.dart';
@@ -56,11 +57,12 @@ class _CoursesState extends State<Courses> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.book,
+                Icons.report,
               ),
-              title: const Text('Courses'),
+              title: const Text('Reports'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => ReportsPage()));
               },
             ),
             ListTile(

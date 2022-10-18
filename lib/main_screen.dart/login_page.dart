@@ -70,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email),
                     border: InputBorder.none,
                     hintText: 'Email',
                   ),
@@ -94,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
                     border: InputBorder.none,
                     hintText: 'Password',
                   ),

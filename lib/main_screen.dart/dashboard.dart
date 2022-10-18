@@ -239,11 +239,11 @@ class _DashboardPageState extends State<DashboardPage> {
   Future addSubjects() async {
     try {
       // show circular progress indicator
-      await showDialog(
-          context: context,
-          builder: (context) {
-            return const Center(child: CircularProgressIndicator());
-          });
+      // await showDialog(
+      //     context: context,
+      //     builder: (context) {
+      //       return const Center(child: CircularProgressIndicator());
+      //     });
 
       // Pop out the circular progress indicator once done
       // Navigator.of(context).pop(context);
@@ -269,7 +269,9 @@ class _DashboardPageState extends State<DashboardPage> {
               content: Text(e.toString()),
             );
           });
+      Navigator.of(context).pop();
     }
+    //  Navigator.of(context).pop();
   }
 
   // ignore: sdk_version_async_exported_from_core
@@ -305,6 +307,7 @@ class _DashboardPageState extends State<DashboardPage> {
         'Biology': GradeHandler().getPoints(bio),
         'Computer Studies': GradeHandler().getPoints(comp),
       });
+      // Navigator.of(context).pop();
       // Navigator.of(context).pop();
       // await showDialog(
       //     context: context,

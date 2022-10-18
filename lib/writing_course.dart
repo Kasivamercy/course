@@ -46,12 +46,20 @@ class _ReadingState extends State<writingCourses> {
                 bool value = await FirebaseMethods()
                     .CheckuserValidforthecourse("MassMedia");
                 if (value == true) {
+                  await FirebaseMethods()
+                      .UpdateDatabase("Mass Media", Colors.teal);
+                  await FirebaseMethods().sendEmail(
+                      message:
+                          "Congratulations! you have succesfully qualified for the Mass Media kindly proceed to apply in kuccps");
                   print("successful");
                   ScaffoldMessenger.of(context)
                       .showSnackBar(showsnackBar("You Qualify"));
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (_) => massMedia()));
                 } else {
+                  await FirebaseMethods().sendEmail(
+                      message:
+                          "Oops! You don't qualify for Mass Media.Kindly try other courses");
                   print("Not successful");
                   ScaffoldMessenger.of(context)
                       .showSnackBar(showsnackBar("You Don't Qualify"));
@@ -65,12 +73,20 @@ class _ReadingState extends State<writingCourses> {
                 bool value = await FirebaseMethods()
                     .CheckuserValidforthecourse("Education Arts");
                 if (value == true) {
+                  await FirebaseMethods()
+                      .UpdateDatabase("Education Arts", Colors.purple);
+                  await FirebaseMethods().sendEmail(
+                      message:
+                          "Congratulations! you have succesfully qualified for the Education Arts kindly proceed to apply in kuccps");
                   print("successful");
                   ScaffoldMessenger.of(context)
                       .showSnackBar(showsnackBar("You Qualify"));
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (_) => educationArts()));
                 } else {
+                  await FirebaseMethods().sendEmail(
+                      message:
+                          "Oops! You don't qualify for Education Arts.Kindly try other courses");
                   print("Not successful");
                   ScaffoldMessenger.of(context)
                       .showSnackBar(showsnackBar("You Don't Qualify"));
@@ -84,12 +100,20 @@ class _ReadingState extends State<writingCourses> {
                 bool value = await FirebaseMethods()
                     .CheckuserValidforthecourse("Computer Science");
                 if (value == true) {
+                  await FirebaseMethods()
+                      .UpdateDatabase("Computer Science", Colors.red);
+                  await FirebaseMethods().sendEmail(
+                      message:
+                          "Congratulations! you have succesfully qualified for the Computer Science kindly proceed to apply in kuccps");
                   print("successful");
                   ScaffoldMessenger.of(context)
                       .showSnackBar(showsnackBar("You Qualify"));
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (_) => compScience()));
                 } else {
+                  await FirebaseMethods().sendEmail(
+                      message:
+                          "Oops! You don't qualify for Computer Science.Kindly try other courses");
                   print("Not successful");
                   ScaffoldMessenger.of(context)
                       .showSnackBar(showsnackBar("You Don't Qualify"));

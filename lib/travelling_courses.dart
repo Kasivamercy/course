@@ -45,12 +45,20 @@ class _travellingCoursesState extends State<travellingCourses> {
                   bool value = await FirebaseMethods()
                       .CheckuserValidforthecourse("Aviation");
                   if (value) {
+                    await FirebaseMethods()
+                        .UpdateDatabase("Aviation", Colors.lime);
+                    await FirebaseMethods().sendEmail(
+                        message:
+                            "Congratulations! you have succesfully qualified for the Aviation kindly proceed to apply in kuccps");
                     print("successful");
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showsnackBar("You Qualify"));
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => aviation()));
                   } else {
+                    await FirebaseMethods().sendEmail(
+                        message:
+                            "Oops! You don't qualify for Aviation.Kindly try other courses");
                     print("Not successful");
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showsnackBar("You Don't Qualify"));
@@ -66,12 +74,20 @@ class _travellingCoursesState extends State<travellingCourses> {
                   bool value = await FirebaseMethods()
                       .CheckuserValidforthecourse("Aerospace");
                   if (value) {
+                    await FirebaseMethods()
+                        .UpdateDatabase("Aerospace", Colors.black12);
+                    await FirebaseMethods().sendEmail(
+                        message:
+                            "Congratulations! you have succesfully qualified for the Aerospace kindly proceed to apply in kuccps");
                     print("successful");
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showsnackBar("You Qualify"));
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => aerospace()));
                   } else {
+                    await FirebaseMethods().sendEmail(
+                        message:
+                            "Oops! You don't qualify for Aerospace.Kindly try other courses");
                     print("Not successful");
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showsnackBar("You Don't Qualify"));
@@ -87,12 +103,20 @@ class _travellingCoursesState extends State<travellingCourses> {
                   bool value = await FirebaseMethods()
                       .CheckuserValidforthecourse("MassMedia");
                   if (value == true) {
+                    await FirebaseMethods()
+                        .UpdateDatabase("Mass Media", Colors.teal);
+                    await FirebaseMethods().sendEmail(
+                        message:
+                            "Congratulations! you have succesfully qualified for the Mass Media kindly proceed to apply in kuccps");
                     print("successful");
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showsnackBar("You Qualify"));
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => massMedia()));
                   } else {
+                    await FirebaseMethods().sendEmail(
+                        message:
+                            "Oops! You don't qualify for Mass Media.Kindly try other courses");
                     print("Not successful");
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showsnackBar("You Don't Qualify"));
